@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\newenvironment{sistema}{\left\lbrace\begin{array}{@{}l@{}}}{\end{array}\right.}
+\newenvironment{lista}{\begin{enumerate}[leftmargin=40pt,label=(\arabic*)]}{\end{enumerate}}
+\makeatletter
+\newcommand{\boxedred}[1]{\textcolor{red}{\fbox{\normalcolor\m@th$#1$}}}
+\makeatother
+\newcommand{\faititolo}[1]{\begin{center}{\LARGE #1}\end{center}\vskip 1em}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\floor}[1]{\left\lfloor #1\right\rfloor}
+\newcommand\restr[2]{{
+  \left.\kern-\nulldelimiterspace
+  #1
+  \vphantom{\big|}
+  \right|_{#2}
+  }}
+\newtheorem{definizione}{Definizione}[section]
+\newtheorem{teo}[definizione]{Teorema}
+\newtheorem{lemma}[definizione]{Lemma}
+\newtheorem{coroll}[definizione]{Corollario}
+\newtheorem{prop}[definizione]{Proposizione}
+\newtheorem*{def*}{Definizione}
+\newtheorem*{teo*}{Teorema}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{coroll*}{Corollario}
+\newtheorem*{prop*}{Proposizione}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
