@@ -1,0 +1,145 @@
+\documentclass{amsbook}
+\usepackage{dsfont}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amssymb}
+\usepackage{amsfonts} 
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{xypic}
+\usepackage{verbatim}
+
+
+%Comandi nuovi
+\newcommand{\on}{\operatorname}
+
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\AAA}{\mathbb{A}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\Ff}{\mathcal F}
+
+
+\newcommand{\spec}{\operatorname{Spec}}
+\newcommand{\Frac}[1]{\on{Frac}\left( #1 \right)  }
+\newcommand{\Pro}{\on{Proj}}
+\newcommand{\End}{\on{End}}
+\newcommand{\im}{\on{Im}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\ol}{\overline}
+
+\newcommand{\mm}{\mapsto}
+
+% Ambienti
+
+\newtheorem*{conj}{Congettura}
+\newtheorem{teo}{Teorema}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollario}
+\newtheorem{prop}{Proposizione}
+
+\newtheorem*{teo*}{Teorema}
+\newtheorem*{lem*}{Lemma}
+\newtheorem*{cor*}{Corollario}
+\newtheorem*{prop*}{Proposizione}
+
+%\theoremstyle{definition}
+\newtheorem*{def*}{Definizione}
+\newtheorem{ex}{Esercizio}
+
+\theoremstyle{remark}
+\newtheorem*{rmk*}{Osservazione}
+
+\begin{document}
+
+\chapter{Definizioni di base}
+
+\begin{def*}[Ordine di annullamento di una funzione meromorfa]
+Data $X$ varietà algebrica (=schema integro e ti tipo finito su un campo) e $V$ sottovarietà di codimensione $1$ e $f \in \OO_{X,V}$ una funzione regolare lungo $V$ definiamo $\on{ord}_V(f)=l(\OO_V / f\OO_V)$. Possiamo poi estendere questa definizione a funzioni meromorfe su $X$ 
+\end{def*}
+
+Proprietà ed osservazioni:
+\begin{itemize}
+\item Grazie al fatto che $X$ è una varietà, questa è una buona definizione in quanto $\OO_V$ è un anello integro di dimensione $1$, dunque si può calcolare la lunghezza di tutti i suoi quozienti 
+\item L'ordine di annullamento è additivo: $\on{ord}_V(fg)=\on{ord}_V(f)+\on{ord}_V(g)$  e questo permette di estendere la definizione alle funzioni meromorfe
+\item Se $\OO_V$ è un anello di valutazione con parametro uniformizzante $t$ allora per calcolare l'ordine di annullamento di $f$ basta confrontare $f$ con una potenza di $t$ (in particolare possiamo fare sempre questa cosa se $X$ è regular in codimension 1, oppure se $X$ è normale)
+\item Se $f,g$ sono polinomi in due variabili e $f$ è irriducibile, allora per ogni punto $P \in V(f)\subset \AAA^2$  si ha che l'ordine di annullamento di $g(\pmod f)$ in $P$ è la molteplicità di intersezione di $f$ e $g$ in $P$.
+\item Data $X$ non normale con normalizzazione $\pi:\widetilde{X}\mm X$, si ha che 
+$$\on{ord}_V(f)= \sum_{V_i \in \pi\inv V}[k(V_i):k(V)]\on{ord}_{V_i}(f)$$
+Inoltre questo ci permette di ricondurci sempre al caso normale.
+\item Non vale una disuguaglianza ultrametrica (esempio sulla cubica nodata)
+\end{itemize}
+
+Per dimostrare il comportamento dell'ordine di annullamento sotto normalizzazione abbiamo usato che 
+\begin{lem}
+Se $B$ è un anello noetheriano con massimali $q_1,\dots,q_r$ allora 
+$$ B= \prod B_{q_i}$$
+\end{lem}
+
+\begin{lem}
+Se $A$ è un anello di dimensione $1$ e $B$ è un'estensione "finita" (nel senso che $l(B/A)<\infty$) allora $l(A/fA)=l(B/fB)$
+\end{lem}
+
+Una volta definito cos'è il divisore di una funzione meromorfa possiamo dare degli invarianti agli schemi algebrici su un un campo $k$ (ovvero schemi noetheriani e di tipo finito su un campo) che siano degli analoghi dei gruppi di omologia. 
+
+\begin{def*}
+Data $X$ uno schema algebrico su un campo $k$ il gruppo dei cicli $Z_mX$ è il gruppo libero generato dalle sotto-varietà di $X$ (ovvero schemi integri su $k$ immersi in $X$) di dimensione $m$. Indichiamo poi con $A_m(X)$ l'$m$-esimo gruppo di Chow di $X$ è il quoziente di $Z_mX$ per il sottogruppo generato dai $\div \phi$ al variare di $\phi $ funzione razionale definita su una $m+1$-sottovarietà di $X$
+\end{def*}
+
+In particolare possiamo associare ad ogni sottochema chiuso di $X$ un ciclo:
+\begin{def*}
+Dato $Y\subset X$ sottoschema chiuso con componenti irriducibili $Y_1, \dots Y_r$ (a cui diamo la struttura ridotta) definiamo $$ [Y]= \sum l(O_{Y,Y_i}) Y_i=\sum m_i Y_i$$
+Dove $m_i$ (detta molteplicità geometrica di $Y_i$ in $Y$) si guarda nell'anello locale del punto generico di $Y$
+\end{def*}
+
+In particolare con l'ultima definizione si può interpretare in un altro modo il divisore di una funzione meromorfa:
+\emph{Se} $f:V\mm \PP^1$ è un morfismo dominante definito su una varietà, allora possiamo interpretarlo come funzione meromorfa e si ha che $\div f= [f\inv(0)] - [f\inv (\infty)]$ dove con $f\inv(0)$ è la fibra di zero con la struttura di sottoschema chiuso dato dal prodotto fibrato.
+
+Ora vorremmo spostare cicli con mappe
+\begin{def*}
+Data $f:X\mm Y$ mappa propria allora definiamo $(f_*)_m:Z_m(X)\mm Z_m(Y)$ tramite la seguente definizione sui generatori:
+$$ f_*(V)=[k(V):k(W)] W$$ se $W=f(V)$ (intesa come immagine set-theoretic a cui diamo la struttura ridotta) ha dimensione  $m$ come $V$
+$f_*(V)=0$ se $W=f(V)$ ha dimensione minore di $m$
+\end{def*}
+
+\begin{def*}
+Data $f:X\mm Y$ una mappa piatta di dimensione relativa costante $d$ definimo il pull-back di cicli $(f^*)_m:Z_m(Y)\mm Z_{m+d}(X)$ come la mappa che agisce nel seguente modo sui generatori: $f^*(V)=[f\inv V]$
+\end{def*}
+
+Tra le prime cose da dimostrare ci sono essnzialmente due cose:
+\begin{itemize}
+\item La funtorialità di queste mappe (cosa succede componendo mappe proprie o mappe piatte), che è vera già al livello di cicli (cosa interessante di per sé). Questa si dimostra facilmente nel caso del push-forward basandosi sulla moltiplicatività del grado delle estensioni di campo, mentre per il flat pull-back si tratta di dimostrare una proposizione a parte, che si riconduce ad un calcolo locale e ad un lemma di algebra sulle dimensioni  di anelli artiniani, ovvero 
+\begin{lem}
+Dato $Z\subset Y$ immersione chiusa $f^*[Z]=[f\inv Z]$
+\end{lem}
+\noindent Il lemma algebrico, invece è
+\begin{lem}
+Data $A_P\mm B_Q$ estensione di anelli locali artiniani, allora
+\[ l(B)=l_B(B)=l_A(A)\cdot l_B(B/PB)=l(A)l_B(B\otimes k(P))	\]
+\end{lem}
+
+\item Una relazione di commutatività fra il flat pull-back e il proper push-forward, che però è vera solo per diagrammi cartesiani, ovvero la seguente regola: Se nel seguente diagramma cartesiano $f$ è propria e $g$ è piatta, allora $f'_*\circ g'^*= g^*f_*$
+%riscrivere il grafico con xy o un altro pacchetto
+$$\xymatrix{
+X' \ar[rr] \ar[dd] &       & Y'\\
+& \square \\
+X\ar[rr] & &Y\\
+}$$
+Questa relazione si riconduce al seguente lemma algebrico:
+\begin{lem}
+Data $A_P\mm B_Q$ estensione di anelli locali artiniani e dato $M$ un $B$-modulo f.g. allora 
+\[ l_A(M)=[k(Q):k(P)]l_B(M) \] 
+\end{lem}
+
+\item Sia il flat pull back che il proper push-forward preservano l'equivalenza razionale. In realtà si può dire molto di più in quanto possiamo anche ricostruire le relazioni al livello di cicli. 
+\end{itemize}
+
+
+\end{document}
