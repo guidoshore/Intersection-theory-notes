@@ -1,0 +1,852 @@
+\documentclass[oneside,a4paper,11pt]{amsbook}
+
+%
+
+%margins
+\topmargin -1cm
+%\oddsidemargin -0.5cm
+\evensidemargin -0.3cm
+\textwidth 16.0cm
+\textheight 23.5cm
+
+%packages
+
+% \usepackage[parfill]{parskip}
+%\usepackage{booktabs}
+%\usepackage{array}
+%\usepackage{paralist}
+%\usepackage{verbatim}
+%\usepackage{subfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[a4paper]{geometry}
+%\geometry{margin=2in}
+% \geometry{landscape}
+\usepackage{graphics}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[all,cmtip]{xy}
+
+%\usepackage{fancyhdr}
+%\pagestyle{fancy} 
+%\renewcommand{\headrulewidth}{0pt}
+%\lhead{}\chead{}\rhead{}
+%\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%\usepackage{sectsty}
+%\allsectionsfont{\sffamily\mdseries\upshape} 
+
+%\usepackage[nottoc,notlof,notlot]{tocbibind}
+%\usepackage[titles,subfigure]{tocloft}
+%\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+%\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape}
+
+%pagestyle
+
+\newtheoremstyle{pl}% ⟨name⟩
+{3pt}% ⟨Space above⟩
+{3pt}% ⟨Space below⟩
+{\itshape}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\scshape}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+\newtheoremstyle{df}% ⟨name⟩
+{3pt}% ⟨Space above⟩
+{3pt}% ⟨Space below⟩
+{\normalfont}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\scshape}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+\newtheoremstyle{rm}% ⟨name⟩
+{3pt}% ⟨Space above⟩
+{3pt}% ⟨Space below⟩
+{\normalfont}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\scshape}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+
+\theoremstyle{pl}
+\newtheorem{teo}{Theorem}[chapter]
+\newtheorem*{teo*}{Theorem}
+\newtheorem{lem}{Lemma}[chapter]			
+\newtheorem*{lem*}{Lemma}
+\newtheorem{cor}{Corollary}[chapter]
+\newtheorem*{cor*}{Corollary}
+\newtheorem{pro}{Proposition}[chapter]
+\newtheorem*{pro*}{Proposition}
+
+
+\theoremstyle{df}
+\newtheorem*{dfn}{Definition}
+\newtheorem{ex}{Example}[chapter]
+\newtheorem{es}{Exercise}[chapter]
+
+\theoremstyle{rm}
+\newtheorem{rmk}{Remark}[chapter]
+\newtheorem*{rmk*}{Remark}
+
+%\hspace{-2em} 
+
+%command
+
+\newcommand{\ce}[1]{
+\check{#1}
+}
+
+\newcommand{\nline}{
+~\\
+}%create a newline after \subsection
+
+\newcommand{\pa}[1]{
+\left(#1\right)
+}
+\newcommand{\qa}[1]{
+\left[#1\right]
+}
+\newcommand{\ga}[1]{
+\left\{#1\right\}
+}
+
+\newcommand{\ol}[1]{
+\overline{#1}
+} 
+\newcommand{\ul}[1]{
+\underline{#1}
+}
+
+\newcommand{\mc}[1]{
+\mathcal{#1}
+}
+\newcommand{\mb}[1]{
+\mathbb{#1}
+}
+\newcommand{\mf}[1]{
+\mathfrak{#1}
+}
+\newcommand{\wt}[1]{
+\widetilde{#1}
+}
+\newcommand{\wh}[1]{
+\widehat{#1}
+}
+
+\newcommand{\spc}[1]{
+\text{Spec }#1
+}
+\newcommand{\spm}[1]{
+\text{Specm }#1
+}
+
+\newcommand{\nil}[1]{
+\text{Nil }#1
+}
+\newcommand{\im}[1]{
+\text{Im }#1
+}
+\newcommand{\coker}[1]{
+\text{coker }#1
+}
+\newcommand{\proj}[1]{
+\text{Proj }#1
+}
+\newcommand{\dm}{
+\text{dim}
+}
+\newcommand{\ord}[2]{
+\text{ord}_{#1}\pa{#2}
+}
+\newcommand{\dv}[1]{
+\text{div}\pa{#1}
+}
+
+\newcommand{\cod}[2]{
+\text{codim}_{#1}{#2}
+}
+\newcommand{\rank}[1]{
+\text{\emph{rank} }#1
+}
+\newcommand{\sgn}[1]{
+\text{\emph{sgn}}\pa{#1}
+}
+\newcommand{\hm}[2]{
+\text{Hom}_{#1}\pa{#2}
+}
+\newcommand{\supp}[1]{
+\text{supp }#1
+}
+
+\newcommand{\exse}[5]{
+\displaystyle 0\longrightarrow #1\stackrel{#2}{\longrightarrow} #3\stackrel{#4}{\longrightarrow} #5\longrightarrow 0
+}
+
+\title{\normalsize\rmfamily Intersezione e Motivi}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Algebraic cycles}
+
+\textbf{Standing assumptions}: in what follows $X$ is a \emph{$k-$scheme} of \emph{finite type}, we say that $X$ is a \emph{variety} if it is integral; a \emph{subvariety} of $X$ is a \emph{closed integral} subscheme $V\subseteq X$.
+
+\section{algebraic preliminaries}
+\subsection{artinian rings}
+\subsection{lenght of a module}
+
+\[
+l_A(M)=l_B(M)[k_B:k_A]
+\]
+
+\section{cycles and rational equivalence} 
+
+\subsection{order of zeroes and poles}
+\nline
+$X$ \emph{integral} $k-$scheme, $\xi\in X$ generic point, $k(X)=\mc{O}_{X,\xi}$ field of rational functions, $V\subseteq X$ subvariety of $\cod{X}{V}=1$ with generic point $\eta\in V$, $f\in\mc{O}_{X,V}:=\mc{O}_{X,\eta}\subseteq k(X)$ rational function defined on $V$
+
+\begin{dfn}
+the \emph{order} of $f\in\mc{O}_{X,V}\subseteq k(X)$ \emph{at} $V\subseteq X$ is given by
+\[
+\ord{V}{f}:=l_{\mc{O}_{X,V}}\pa{\frac{\mc{O}_{X,V}}{f}}
+\]
+\end{dfn}
+
+\begin{rmk}
+some easy remarks
+\begin{itemize}
+\item{$\dm{\mc{O}_{X,V}}=\cod{X}{V}=1$, by \textbf{Krull's principal ideal theorem} $\dm{\frac{\mc{O}_{X,V}}{f}}=0$ since $f\in\mc{O}_{X,V}$ is not a zero divisor, in particular $\frac{\mc{O}_{X,V}}{f}$ is an \textbf{artinian} ring so it has \textbf{finite} lenght.}
+\item{if $X$ is \textbf{regular at} $V$, $R=\mc{O}_{X,V}$ is a \textbf{DVR}, let $t\in R$ a uniformizing parameter and $k=\frac{R}{t}$ residue field, write $f=\alpha t^n$ with $\alpha\in R^*$ and $n\ge 0$, then
+\[
+\ord{V}{f}=l\pa{\frac{R}{\alpha t^n}}=\dm_k\frac{R}{t^n}=n=v_R(f)
+\]
+}
+\end{itemize}
+\end{rmk}
+
+\nline
+the function $\ord{V}{-}$ is \textbf{additive}: $f,g\in\mc{O}_{X,V}=R$, we have an exact sequence of $R-$mod.
+
+\[
+\xymatrix{
+0\ar[r] &\frac{(f)}{(fg)}\ar[r] &\frac{R}{fg}\ar[r] &\frac{R}{f}\ar[r] &0\\
+}
+\]
+
+\nline
+by \textbf{additivity of lenght}
+
+\[
+\ord{V}{fg}=l\pa{\frac{R}{fg}}=l\pa{\frac{(f)}{(fg)}}+l\pa{\frac{R}{f}}=\ord{V}{g}+\ord{V}{f}
+\]
+
+\nline
+since $\frac{(f)}{(fg)}=\frac{R}{g}$ as an $R-$mod.\\
+\ul{General case}: $f\in k(X)$ rational function, since $k(X)=k\pa{\mc{O}_{X,V}}$ we have $f=\frac{a}{b}$ for some $a,b\in\mc{O}_{X,V}$
+
+\begin{dfn}
+the \emph{order} of $f\in\mc{O}_{X,V}\subseteq k(X)$ \emph{at} $V\subseteq X$ is given by
+\[
+\ord{V}{f}:=\ord{V}{a}-\ord{V}{b}=l\pa{\frac{\mc{O}_{X,V}}{a}}-l\pa{\frac{\mc{O}_{X,V}}{b}}
+\]
+\end{dfn} 
+
+\begin{rmk}
+other easy remarks
+\begin{itemize}
+\item{\textbf{well defined}: $f=\frac{a}{b}=\frac{a'}{b'}\Longleftrightarrow ab'=a'b$ then
+\[
+\ord{V}{a}+\ord{V}{b'}=\ord{V}{ab'}=\ord{V}{a'b}=\ord{V}{a'}+\ord{V}{b}
+\]
+}
+\item{\textbf{additivity}: $f,g\in k(X)$ we have $\ord{V}{fg}=\ord{V}{f}+\ord{V}{g}$.}
+\end{itemize}
+\end{rmk}
+
+\subsection{normalization formula}
+\nline
+$X$ \emph{integral} $k-$scheme, $\nu:\ol{X}\rightarrow X$ \emph{normalization}
+
+\begin{teo*}
+$V\subseteq X$ subvariety of $\cod{X}{V}=1$, $\nu^{-1}V=W_1\cup\dots\cup W_r$ irred. comp. of $\nu^{-1}V$, $f\in k(X)=k(\ol{X})$ rational function, \ul{then}
+\[
+\ord{V}{f}=\sum_{j=1}^r{\ord{W_j}{f}\qa{k(W_j):k(V)}}
+\]
+\end{teo*}
+
+\begin{rmk}
+properties of normalization:
+\end{rmk}
+
+\begin{proof}(theorem)
+\begin{itemize}
+\item{\ul{affine case}: settings
+\begin{itemize}
+\item{$X=\spc A$ with $A$ f.g. $k-$domain, $\ol{X}=\spc\pa{\ol{A}^{k(A)}=\ol{A}}$, $\nu:\ol{X}\rightarrow X$ induced by the inclusion $A\subseteq\ol{A}$, $f\in k(A)=k(\ol{A})$.}
+\item{$V=\ol{\ga{p}}$, $p\in\spc A$ prime ideal of $\text{ht}(p)=1$; $W_1,\dots,W_r$ irred. comp. of $\nu^{-1}V$ correspond to minimal primes $q_1,\dots,q_r\in\spc\ol{A}$ of the ideal $p\ol{A}$, $q_j\cap A=p$, we observe that $1\le\text{ht}(q_j)\le\text{ht}(p)=1$ since $0\subsetneq q_j$ and $\ol{A}/A$ is integral.}
+\item{$S=A\setminus p$, $\ol{A}_p=S^{-1}\ol{A}$.}
+\end{itemize}
+}
+\item{$\frac{\ol{A}_p}{f}=\frac{\ol{A}_{q_1}}{f}\times\dots\times\frac{\ol{A}_{q_r}}{f}$: in fact $\frac{\ol{A}_p}{f}/\frac{A_p}{f}$ is integral, in particular $\frac{\ol{A}_p}{f}$ is artinian, since every artinian ring splits as a product of local rings (the localizations at its finite prime/maximal ideals) we get the decomposition.
+\[
+l_{A_p}\pa{\frac{\ol{A}_p}{f}}=\sum_{j=1}^r{l_{A_p}\pa{\frac{\ol{A}_{q_j}}{f}}}
+\]
+}
+\item{$l_{A_p}\pa{\frac{\ol{A}_{q_j}}{f}}=l_{\ol{A}_{q_j}}\pa{\frac{\ol{A}_{q_j}}{f}}[k(q_j):k(p)]=\ord{W_j}{f} [k(q_j):k(p)]$.}
+\item{$l_{A_p}\pa{\frac{\ol{A}_p}{f}}=l_{A_p}\pa{\frac{A_p}{f}}$: we have $\ol{\pa{A_p}}^{k(A)}=\pa{\ol{A}^{k(A)}}_p$; the following short exact sequences of finite $A-$mod.
+\[
+\xymatrix{
+0\ar[r] &\frac{A}{fA}\ar[r] &\frac{\ol{A}}{fA}\ar[r] &\frac{\ol{A}}{A}\ar[r] &0\\
+0\ar[r] &\frac{f\ol{A}}{fA}\ar[r] &\frac{\ol{A}}{fA}\ar[r] &\frac{\ol{A}}{f\ol{A}}\ar[r] &0\\
+}
+\]
+together with additivity of lenght and $\frac{\ol{A}}{A}=\frac{f\ol{A}}{fA}$ we get 
+\[
+\ord{V}{f}=l_A\pa{\frac{A}{fA}}=l_A\pa{\frac{\ol{A}}{f\ol{A}}}
+\]
+}
+\item{reduction to the affine case:}
+\end{itemize}
+\end{proof}
+
+\subsection{rational equivalence and Chow group}
+\nline
+
+$X$ scheme, the \emph{group of $k-$cycles} $Z_k(X)$ is the free abelian group generated by the $k-$subvar.
+\[
+Z_k(X)=\bigoplus_{\dim V=k}{\mb{Z}[V]}
+\]
+For every $(k+1)-$subvar. $W\subseteq X$ we have a divisor map
+\[
+\dv:k(W)^*\rightarrow Z_k(W)\subseteq Z_k(X)
+\]
+a $k-$cycle is \emph{rational equivalent to zero} if it lies in the image
+\[
+\text{im}\pa{\text{div}:\bigoplus_{\dim W=k+1}{k(W)^*}\longrightarrow Z_k(X)}
+\]
+The \emph{$k-$Chow group} of $X$ is given by
+\[
+A_k(X)=\text{coker}\pa{\text{div}:\bigoplus_{\dim W=k+1}{k(W)^*}\longrightarrow Z_k(X)}
+\]
+The \emph{Chow group} of $X$ is $A_\bullet(X):=\bigoplus_{k\ge 0}{A_k(X)}$.
+
+\begin{rmk}
+easy remarks
+\begin{itemize}
+\item{cycles and Chow groups \textbf{depends only} on the reduced part of $X$
+\[
+Z_k(X)=Z_k(X_{\text{red}})\quad\quad A_k(X)=A_k(X_{\text{red}})
+\]
+}
+\item{$d=\dim X$, $X=X_1\sqcup\dots\sqcup X_m$ decomposition in irred. comp., suppose that $X_1,\dots,X_r$ are the \textbf{maximal} irred. comp. $\dim X_j=\dim X=d$ for $j\le r$ then
+\[
+A_d(X)=Z_d(X)=\mb{Z}[X_1]\oplus\dots\oplus\mb{Z}[X_r]
+\]
+since there are no $(d+1)-$subvar.}
+\item{$Z_0(X)$ is the free group generated by closed pts of $X$.}
+\item{$Y\subseteq X$ closed s.scheme, we have a natural inclusion $Z_k(Y)\subseteq Z_k(X)$, since being equivalent to zero in $X$ is weaker than being equivalent to zero in $Y$ we have an induced map $A_k(Y)\rightarrow A_k(X)$ which in general is \textbf{not injective nor surjective}.}
+\end{itemize}
+\end{rmk}
+
+\subsection{fundamental class}
+\nline
+$X$ scheme, $X=X_1\sqcup\dots\sqcup X_m$ irred. comp., the \emph{fundamental class} of $X$ is given by the (inhomogeneous) cycle
+\[
+[X]\in Z_\bullet(X)\quad\quad [X]:=\sum_{j=1}^m{l\pa{\mc{O}_{X,X_j}}[X_j]}
+\]
+if $Y\subseteq X$ is a closed s.scheme the \emph{fundamental class} of $Y$ in $X$ is
+\[
+[Y]:=i_*[Y]\in A_\bullet(X)
+\]
+where $i_*$ is the pushforward along the closed embedding $i:Y\rightarrow X$.
+
+\section{functoriality}
+\subsection{proper push-forward}
+\nline
+$X,Y$ schemes, $f:X\rightarrow Y$ proper morph., $V\subseteq X$ $k-$subvar., since $f$ is proper $W=f(V)\subseteq Y$ is an irred. closed s.set, 
+
+\begin{dfn}
+ we assign
+ \[
+f_*[V]:=\left\{
+\begin{array}{l l}
+[k(V):k(W)][W] &\text{if $\dim V=\dim W$}\\
+0 &\text{otherwise}\\
+\end{array}
+\right.
+\]
+the proper push-forward $f_*:Z_k(X)\rightarrow Z_k(Y)$ is the linear extension of this assignation.
+\end{dfn}
+
+\begin{rmk}
+some remarks
+\begin{itemize}
+\item{\textbf{degree of a $0-$div}: if $f:X\rightarrow\spc k$ is a proper $k-$scheme then the proper push-forward of $0-$cycles coincides with the degree map $f_*=\deg:Z_0(X)\rightarrow\mb{Z}$ once we identify $Z_0(\spc k)=\mb{Z}[\spc k]=\mb{Z}$.}
+\item{\textbf{normalization}: $X$ variety, $\nu:\ol{X}\rightarrow X$ a normalization, $\phi\in k(X)^*=k(\ol{X})^*$ rational function; recall that $\nu$ is a \textbf{finite} (proper affine) morph, then by \textbf{proposition ??} we have
+\[
+\nu_*\text{div}_{\ol{X}}(\phi)=\text{div}_X(\phi)
+\]
+}
+\item{\textbf{composition $(gf)_*=g_*f_*$}: consider $f:X\rightarrow Y$, $g:Y\rightarrow Z$ proper morph., since properness is stable under composition $gf:X\rightarrow Z$ is again proper; fix $V\subseteq X$ $k-$subvar. and set $W=f(V)\subseteq Y$, $T=g(W)=gf(V)\subseteq Z$ , there are a few cases
+\begin{itemize}
+\item{$\dim W<\dim V$: in this case $\dim T\le\dim W<\dim V$ so we have 
+\[
+f_*[V]=0,(gf)_*[V]=0\Rightarrow (gf)_*[V]=0=g_*f_*[V]
+\]
+}
+\item{$\dim T<\dim W$: in this case $\dim T<\dim W\le\dim V$ so we have 
+\[
+g_*[W]=0, f_*[V]=\alpha[W],(gf)_*[V]=0\Rightarrow (gf)_*[V]=0=g_*f_*[V]
+\]
+}
+\item{$\dim W=\dim V$ and $\dim T=\dim W$: in this case
+\[
+(gf)_*[V]=[k(V):k(T)][T]=[k(V):k(W)][k(W):k(V)][T]=g_*\pa{[k(V):k(W)][W]}=g_*f_*[V]
+\]
+}
+\end{itemize}
+}
+\item{$Id_*=Id$: clear. Putting together this point and the previous one we get that proper push-forward is \textbf{functorial}.}
+\end{itemize}
+\end{rmk}
+
+\begin{lem}
+$X,Y$ varieties, $f:X\rightarrow Y$ proper surjective morph., $\phi\in k(X)^*$ \ul{then}
+\[
+f_*(\dv{\phi})=\left\{
+\begin{array}{l l}
+0 &\text{if $\dim Y<\dim X$}\\
+\dv{N_{k(X)/k(Y)}\pa{\phi}} &\text{if $\dim Y=\dim X$}\\
+\end{array}
+\right.
+\]
+\end{lem}
+
+\begin{proof}(lemma)
+\begin{itemize}
+\item{\textbf{case $\dim Y<\dim X-1$}: clear.}
+\item{for the next steps it will be convenient to \textbf{reduce to the normal case}: consider the commutative diagram
+\[
+\xymatrix{
+\ol{X}\ar[r]^{\ol{f}}\ar[d]_{\nu_X} &\ol{Y}\ar[d]^{\nu_Y}\\
+X\ar[r]_f &Y\\
+}
+\]
+where $\nu_X:\ol{X}\rightarrow X,\nu_Y:\ol{Y}\rightarrow Y$ are respectively the normalization of $X,Y$ which are \textbf{birational proper} morph., and $\ol{f}:\ol{X}\rightarrow\ol{Y}$ is the induced map on the normalizations ($f\nu_X$ is dominant), $\ol{f}$ is proper; we have
+\[
+\begin{array}{l l}
+f_*\text{div}_X(\phi) &\\
+=f_*\pa{\nu_X}_*\text{div}_{\ol{X}}(\phi) &\text{by \textbf{remark ??}}\\
+=\pa{\nu_Y}_*\ol{f}_*\text{div}_{\ol{X}}(\phi) &\text{by \textbf{fuctoriality}}\\
+\end{array}
+\]
+%if $\ol{f}_*\text{div}_{\ol{X}}(\phi)=\text{div}_{\ol{Y}}\pa{N_{k(X)/k(Y)(\phi)}}$ or $=0$ then, again by \textbf{proposition ??}, we get $\pa{\nu_Y}_*\ol{f}_*\text{div}_{\ol{X}}(\phi)=\text{div}_Y\pa{N_{k(X)/k(Y)(\phi)}}$ or $=0$.
+using again \textbf{proposition ??}, the fact that $\dim\ol{X}=\dim X,\dim\ol{Y}=\dim Y$ and $k(\ol{X})=k(X),k(\ol{Y})=k(Y)$, it is enough to prove the case $X,Y$ normal.}
+\item{\textbf{case $\dim Y=\dim X-1$}: 
+\begin{itemize}
+\item{reduction to the case of \textbf{curves} $\dim X=1$, $X$ regular and $Y=\spc k$: consider the cartesian sqare
+\[
+\xymatrix{
+C=X\times_Y\spc k(Y)\ar[r]^(0.60)g\ar[d]_j &\spc k(Y)\ar[d]^i\\
+X\ar[r]_f &Y\\
+}
+\]
+since properness is stable under base change the morph $C\rightarrow\spc k(Y)$ is \emph{proper}, $C=f^{-1}\eta\subseteq X$ (closed emb.) where $\eta\in Y$ is the generic pt. $\dim C=1$ using the \textbf{theorem of the fiber} ($\mc{O}_{Y,\eta}\rightarrow\mc{O}_{X,p}$ is flat for every $p\in f^{-1}\eta$ since everything is flat over a field, \emph{generic flatness})
+\[
+\dim\mc{O}_{f^{-1}\eta,p}=\dim\mc{O}_{X,p}-\dim\mc{O}_{Y,\eta}=\dim\mc{O}_{X,p}
+\]
+$C$ is integral: $\eta\in V\subseteq Y$ open affine subset $V=\spc B$, $k(Y)=k(B)=S^{-1}B$ where $S=B-\ga{0}$, $U\subseteq X$ open affine subset $U=\spc A$ with $A$ domain f.g. over $B$, $f^{-1}\eta\cap U=\spc A\otimes_B k(B)=\spc S^{-1}A$, $S^{-1}A$ is a domain.\\
+In conclusion $C$ is a proper integral $k(Y)-$curve (possibly singular).
+\[
+\begin{array}{l l}
+\displaystyle f_*\dv{\phi}=f_*\pa{\sum_{V\in X^{(1)}}{\ord{V}{\phi}[V]}} &\\
+\displaystyle =\sum_{V\in X^{(1)}}{\ord{V}{\phi}f_*[V]} &\text{by linearity}\\
+\displaystyle =\sum_{V\in \pa{f^{-1}\eta}^{(1)}}{\ord{V}{\phi}f_*[V]} &\text{since if $f(V)\neq Y\Rightarrow\dim f(V)<\dim V$}\\
+\displaystyle =\pa{\sum_{V\in \pa{f^{-1}\eta}^{(1)}}{\ord{V}{\phi}[k(V):k(Y)]}}[Y] &\\
+\displaystyle =\deg(\dv{\phi})[Y]=g_*\dv{\phi}[Y] &\text{once we identify $Z_0\pa{\spc k(Y)}=\mb{Z}$}\\
+\end{array}
+\]
+So it is enough to show that $g_*\dv{\phi}=0$, furthermore we can assume $C$ normal (or equivalently regular) by means of \textbf{proposition ??}.}
+\item{case of curves: see \textbf{theorem ??}.}
+\end{itemize}
+}
+\item{\textbf{case $\dim Y=\dim X$}:
+\[
+\begin{array}{l l}
+\displaystyle f_*\dv{\phi}=\sum_{V\in X^{(1)}}{\ord{V}{\phi}f_*[V]} &\\
+\displaystyle =\sum_{V\in X^{(1)}\;;\;\dim f(V)=\dim V}{\ord{V}{\phi}[k(V):k(f(V))][f(V)]} &\\
+\displaystyle =\sum_{W\in Y^{(1)}}{\pa{\sum_{V\in X^{(1)}\;,\;f(V)=W}{\ord{V}{\phi}[k(V):k(W)]}}[W]} &\\
+\end{array}
+\]
+\textbf{claim}: we need to prove that
+\[
+\ord{W}{N\phi}=\sum_{V\in X^{(1)}\;,\;f(V)=W}{\ord{V}{\phi}[k(V):k(W)]}
+\]
+Consider the cartesian square
+\[
+\xymatrix{
+Z=X\times_Y\spc \mc{O}_{Y,W}\ar[r]\ar[d] &\spc \mc{O}_{Y,W}\ar[d]\\
+X\ar[r] &Y\\
+}
+\]
+$Z\rightarrow\spc\pa{\mc{O}_{Y,W}=A}$ is proper since properness is stable under base change and has \emph{finite fibers} (it is a scheme with finite pts), by \textbf{Chevalley's theorem} $Z\rightarrow\spc A$ is \textbf{finite}, in particular it is \textbf{affine} $\Rightarrow Z=\spc B$, $B/A$ finite extension.\\
+\textbf{Setting}: $p\in Y$ generic pt of $W$, $p\in U=\spc R\subseteq Y$ open affine neigh., $Z=X\times_U\spc A$, furthermore $Z$ is covered by the open affine s.sets $U'\times_U\spc A$ where $U'=\spc C\subseteq X$ open affine s.set s.t. $f(U')\subseteq U$ and $C$ is a f.g. $R-$domain. We have
+\begin{itemize}
+\item{$B$ is \textbf{normal}: $A=R_p$ and $U'\times_U\spc A=\spc\pa{R_p\otimes_RC}=\spc S^{-1}C$ where $S=R\setminus p$; since $S^{-1}C$ is normal we conclude that $Z$ is normal provided that it is irreducible, this follows from the fact that all the open affine s.sets of the cover contains the (unique) lift of the generic pt. $\xi\in X$. In particular $B=\mc{O}_Z(Z)$ is normal.}
+\item{\textbf{fraction field} $k(B)=k(X)$: in fact $k(Z)=k(U'\times_U\spc A)=k(S^{-1}C)=k(C)=k(X)$.}
+\item{$B=\ol{A}^{k(X)}$: it follows from these facts: $B/A$ is integral since it is finite, $B\subseteq k(X)=k(B)$ is integrally closed since $B$ is normal.}
+\end{itemize}
+the \textbf{claim} follows from \textbf{lemma ??} since $A=\mc{O}_{Y,W}$ is a \textbf{DVR} ($Y$ normal $\Rightarrow Y$ regular in $\cod{}{}=1$), $B/A$ is a finite extension of normal domains and $B=\ol{A}^{k(B)}$.}
+\end{itemize}
+\end{proof}
+
+\begin{lem*}
+$A$ DVR with maximal ideal $p\subseteq A$ and uniformizing parameter $t\in A$, $B/A$ finite, $B$ normal, $q_1,\dots,q_n\subseteq B$ prime ideals over $p\subseteq A$, $f\in k(B)$ rational function \ul{then} 
+\[
+v_p\pa{N_{k(B)/k(A)}(f)}=\sum_{j=1}^n{v_{q_j}(f)[k(q_j):k(p)]}
+\] 
+\end{lem*}
+
+\begin{proof}(lemma)
+\begin{itemize}
+\item{by \textbf{additivity} of the norm and of the valuations we can assume $f\in B$.}
+\item{$B=A^r$ is a free $A-$mod.: since $A$ is a \textbf{PID} and $B$ is a torsion-free $A-$mod, moreover the rank is $r=[k(B):k(A)]$.}
+\item{ every $A-$basis of $B$ as an $A-$mod. is also a $k(A)-$basis of $k(B)$ as a $k(A)-$vector space, moreover since $f\in B$ the matrix representing $L_f:B\rightarrow B$ in some $A-$basis also represents $L_f:k(B)\rightarrow k(B)$ in the correspondent $k(A)-$basis, so we get
+\[
+N_{k(B)/k(A)}(f)=\text{det}_{k(A)}(L_f:k(B)\rightarrow k(B))=\text{det}_A(L_f: B\rightarrow B)
+\]
+}
+\item{using the \textbf{Smith normal form} we find two $A-$basis of $B$ s.t. the matrix representing $L_f$ w.r.t. these basis is diagonal
+\[
+L_f=\left(
+\begin{array}{l l l}
+a_1 & &\\
+ &\ddots &\\
+ & &a_r\\
+\end{array}
+\right)
+\]
+then, using the \textbf{Binet identity} we get
+\[
+\text{det}_A(L_f)=ua_1\cdots a_r
+\]
+for some $u\in A^*$. In conclusion
+\[
+\begin{array}{l l}
+\displaystyle v_p\pa{N_{k(B)/k(A)}(f)}=\sum_{j=1}^r{l_A\pa{\frac{A}{a_j}}} &\\
+\displaystyle =l_A\pa{\frac{B}{fB}} &\text{by \textbf{additivity} of lenght}\\
+\displaystyle =\sum_{j=1}^n{l_A\pa{\frac{B_{q_j}}{fB_{q_j}}}} &\frac{B}{fB}\text{ is artinian with minimal primes }q_1,\dots,q_n\\
+\displaystyle =\sum_{j=1}^n{[k(q_j):k(p)]l_B\pa{\frac{B_{q_j}}{fB_{q_j}}}} &\\
+\displaystyle =\sum_{j=1}^n{[k(q_j):k(p)]v_{q_j}(f)} &\\
+\end{array}
+\]
+}
+\end{itemize}
+\end{proof}
+
+\begin{teo}
+proper push-forward preserves rational equivalence.
+\end{teo}
+
+\begin{proof}(theorem)
+
+\end{proof}
+
+\subsection{flat pull-back}
+\nline
+$X,Y$ schemes, $f:X\rightarrow Y$ flat morph. of relative dimension $d$, $V\subseteq Y$ $k-$subvar., $f^{-1}V\subseteq X$ is a closed s.scheme of \textbf{pure dimension} $k+d$ (every irred. comp. has $\dim=k+d$ since $f$ has relative dimension $d$)
+
+\begin{dfn}
+we assign 
+\[
+ f^*[V]:=[f^{-1}V]\in Z_{k+d}(X)
+\]
+the flat pull-back $f^*:Z_k(Y)\rightarrow Z_{k+d}(X)$ is the linear extension of this assignation.
+\end{dfn}
+
+In order to prove that this construction is \textbf{functorial} we need the following  
+
+\begin{lem}
+ $X$ $k-$scheme of pure dimension $\dim X=n$, $f:X\rightarrow Y$ flat morph of rel. dim. $d$, $Z\subseteq Y$ closed s.scheme \ul{then}
+ \[
+  f^*[Z]=[f^{-1}Z]\in Z_\bullet(X)
+ \]
+ where $[Z]\in Z_\bullet(Y)$ is the fundamental class of $Z$.
+\end{lem}
+
+\begin{rmk}
+using the \textbf{lemma} we prove functoriality of flat pull-back
+\begin{itemize}
+ \item{\textbf{composition}: $f:X\rightarrow Y$, $g:Y\rightarrow Z$ flat morph. of rel. dim. $d,e$ respectively then $gf:X\rightarrow Z$ is flat of rel. dim. $d+e$.}
+ \item{$(gf)^*=f^*g^*$: fix $V\subseteq Z$ $k-$subvar.
+ \[
+ \begin{array}{l l}
+ (gf)^*[V]=[f^{-1}g^{-1}V]\in Z_{k+d+e}(X) &\text{by definition}\\
+ =f^*\pa{[g^{-1}V]\in Z_{k+e}(Y)} &\text{by the \textbf{lemma}}\\
+ =f^*g^*[V] &\text{by definition}\\
+ \end{array}
+ \]
+ }
+\end{itemize}
+
+%\begin{itemize}
+ %\item{Without the assumption of \textbf{pure dimensionality} the statement \textbf{doesn't hold}.}
+ %\item{Example: $X=r\cup\pi=\spc\frac{k[x,y,z]}{(y(x+y),z(x+y))}\subseteq\mb{A}^3$, $Y=\mb{A}^1=\spc\pa{\frac{k[x,y,z]}{(z,y)}=k[x]}$, $f:X\rightarrow Y$ is the projection on the $x-$axis given by $k[x]\rightarrow\frac{k[x,y,z]}{(y(x+y),z(x+y))}$; $f$ is flat since $Y$ is a regular curve and every irred. comp. of $X$ dominates; let $Z=[0]\in Z_0(\mb{A}^1)$}
+%\end{itemize}
+\end{rmk}
+
+\begin{proof}(lemma)
+\begin{itemize}
+ \item{$Z=V_1\cup\dots\cup V_r$ irred. comp.}
+ \item{}
+ \item{}
+\end{itemize}
+\end{proof}
+
+\begin{rmk}
+some remarks
+\begin{itemize}
+ \item{}
+ \item{}
+ \item{}
+\end{itemize}
+\end{rmk}
+
+\subsection{compatibility}  
+
+\chapter{Intersecting cycles}
+\section{divisors}
+
+\subsection{invertible sheaves}
+
+\subsection{Weyl divisors}
+\nline
+$X$ $n-$dimensional scheme
+
+\begin{dfn}
+a \emph{Weyl divisor} $D$ on $X$ is an $(n-1)-$cycle $D\in Z_{n-1}(X)$.
+\end{dfn}
+
+\begin{rmk}
+\textbf{Notations}:
+\begin{itemize}
+\item{the \emph{Weyl divisor group} is $\text{Div}(X):=Z_{n-1}(X)$.}
+\item{the \emph{principal divisors} are $\text{PDiv}(X)=\ga{\dv{f}:f\in k(X)^*}$.}
+\item{the \emph{class group} of $X$ is the $(n-1)-$\emph{Chow group} $\text{Cl}(X)=A_{n-1}(X)=\frac{\text{Div}(X)}{\text{PDiv}(X)}$.}
+\item{$D,D'\in Z_{n-1}(X)$, we say that $D'\ge D$ if every coefficient in the expression of the canonical basis of $Z_{n-1}(X)$ is nonnegative.}
+\end{itemize}
+\end{rmk}
+
+\begin{dfn}
+$D\in Z_{n-1}(X)$ is an \emph{effective divisor} if $D\ge 0$. 
+\end{dfn}
+
+\subsection{Cartier divisors}
+\nline
+$X$ integral scheme
+
+\begin{dfn}
+a \emph{Cartier divisor} on $X$ is a pair $\pa{\mc{L},s\in\mc{L}_\xi}$ where $\mc{L}$ is an invertible sheaf and $s$ is a non-zero rational section $s\neq 0$.
+\end{dfn}
+
+\begin{dfn}
+cadiv. $\pa{\mc{L},s},\pa{\mc{L}',s'}$ are \emph{equivalent} if there exists an isom. $\phi:\mc{L}\rightarrow\mc{L}'$ s.t. $\phi(s)=s'$.
+\end{dfn}
+
+\begin{rmk}
+We have the following
+\begin{itemize}
+\item{being equivalent is an \emph{equivalence relation}, the set of equivalence classes is $\text{CaDiv}(X)$.}
+\item{\emph{tensor product} gives rise to an \textbf{abelian group structure} on $\text{CaDiv}(X)$ 
+\[
+\qa{\mc{L},s}+\qa{\mc{L}',s'}:=\qa{\mc{L}\otimes\mc{L}',s\otimes s'}
+\]
+where the identity is represented by $\qa{\mc{O}_X,1}$ and the inverse of $\qa{\mc{L},s}$ is $\qa{\mc{L}^*,s^*}$.}
+\item{the natural map $\text{CaDiv}(X)\rightarrow\text{Pic}(X)$ is a \textbf{surjective} hom. of groups.}
+\item{two nonzero sections $s_1,s_2\mc{L}_\xi$ differ by a nonzero rational function $s_2=fs_1$, $f\in k(X)^*$.}
+\item{\textbf{functoriality}: in general we \textbf{can't} pull-back Cartier divisors along any morph., in the particular case $f:X\rightarrow Y$ \textbf{dominant} morphism of \textbf{integral} schemes then we have a \textbf{pull-back} of Cartier divisors
+\[
+f^*:\text{CaDiv}(Y)\rightarrow\text{CaDiv}(X)\quad\quad f^*\qa{\mc{L},s}:=\qa{f^*\mc{L},f(s)}
+\]
+where $f:\mc{O}_{Y,\eta}\rightarrow\mc{O}_{X,\xi}$ is the induced map on the generic pts $\eta\in Y,\xi\in X$.}
+\end{itemize}
+\end{rmk}
+
+\subsection{Weyl divisor associated to a Cartier divisor}
+\nline
+$\pa{\mc{L},s}$ cadiv. on $X$, $X$ \emph{integral} $k-$scheme, $\xi\in X$ generic pt.
+\nline
+\textbf{Construction}: $V\subseteq X$ $(n-1)-$subvariety with generic pt. $V=\ol{\ga{p}}$, $p\in U\subseteq X$ open subset s.t. $\mc{L}|_U\simeq\mc{O}|_U$, the trivialization is given by $\phi:\mc{O}|_U\rightarrow\mc{L}|_U$ which sends $1\in\mc{O}(U)\rightarrow s_0\in\mc{L}(U)$, on the generic pt. we have $s=as_0$ or $a=\frac{s}{s_0}$
+\[
+\ord{V}{s}:=\ord{V}{\frac{s}{s_0}}
+\] 
+the construction is \emph{independent} of the choice of $U$ and of the trivialization $\mc{L}|_U\simeq\mc{O}|_U$
+
+\begin{dfn}
+the \emph{Weyl divisor} of $s\in\mc{L}_\xi$ is
+\[
+\dv{s}:=\sum_{\cod{X}{V}=1}{\ord{V}{s}[V]}
+\]
+\end{dfn}
+
+\begin{rmk}
+some easy remarks
+\begin{itemize}
+\item{\textbf{well defined}: the construction and the computations needed are \textbf{local} and depends only on the choice of a trivializing \textbf{nonvanishing} section $s_0\in\mc{O}_{L,p}$, $s_0(p)\neq 0\in\frac{\mc{L}_p}{\mf{M}_p\mc{L}_p}$, observe that $s_0\in\mc{L}_p\subseteq\mc{L}_\xi$.}
+\item{\textbf{compatibility with equivalence}: $\phi:\pa{\mc{L},s}\rightarrow\pa{\mc{L}',s'}$ isom of cadiv., $\phi(s)=s'$, fix $V=\ol{\ga{p}}\subseteq X$ subvariety of $\cod{X}{V}=1$ and choose a trivializing section $s_0\in\mc{L}_p$ and write $s=as_0$ in $\mc{L}_\xi$, then $\phi(s_0)\in\mc{L}'_p$ is a trivializing secion and $s'=\phi(s)=a\phi(s_0)$ in $\mc{L}'_\xi$ (use then the fact that the order is well-defined).} 
+\item{\textbf{additivity}: $\qa{\mc{L},s},\qa{\mc{L}',s'}$ cadiv. then 
+\[
+\dv{s\otimes s'}=\dv{s}+\dv{s'}
+\]
+the map $\text{CaDiv}(X)\rightarrow Z_{n-1}(X)$ is a \textbf{group hom.}}
+\item{\textbf{induced map} $\text{Pic}(X)\rightarrow A_{n-1}(X)$: since every two nonzero sections $s_1,s_2\in\mc{L}_\xi$ differ by a nonzero rational function $s_2=fs_1$, $f\in k(X)^*$, from the \textbf{contruction} it is immediate to check that $\dv{s_2}=\dv{f}+\dv{s_1}$ so that $\qa{\dv{s_2}}=\qa{\dv{s_1}}\in A_{n-1}(X)$.}
+\end{itemize}
+\end{rmk}
+
+\begin{dfn}
+a Cartier divisor $\pa{\mc{L},s}$ is \emph{effective} if $\dv{s}\ge 0$
+\end{dfn}
+
+\subsection{the maps $\text{CaDiv}(X)\rightarrow Z_{n-1}(X)$ and $\text{Pic}(X)\rightarrow A_{n-1}(X)$}
+\nline
+In general they are both not injective nor surjective
+\[
+\xymatrix{
+\text{CaDiv}(X)\ar[r]^{\dv{-}}\ar[d] &Z_{n-1}(X)\ar[d]\\
+\text{Pic}(X)\ar[r]^{\dv{-}} &A_{n-1}(X)\\
+}
+\]
+
+\subsection{examples: the nodal/cuspidal cubic}
+
+\subsection{injectivity for normal schemes}
+\nline
+$X$ \emph{normal} scheme
+
+\begin{teo}
+If $X$ is a normal scheme then the maps $\text{CaDiv}(X)\rightarrow Z_{n-1}(X)$ and $\text{Pic}(X)\rightarrow A_{n-1}(X)$ are injective.
+\end{teo}
+
+\begin{proof}(theorem)
+$\qa{\mc{L},s}\in\text{CaDiv}(X)$, suppose that $\dv{s}=0$ we prove that $s\in\mc{L}(X)$ is a \textbf{global trivializing section}: fix $U\subseteq X$ open subset over which $\mc{L}$ is trivial, $\phi:\mc{O}|_U\rightarrow\mc{L}|_U$ trivialization sending $1\rightarrow s_0$, by the construction $s=as_0$ in $\mc{L}_\xi$ with $a\in k(X)^*=k(U)^*$
+\[
+\begin{array}{l l}
+\dv{a}=0\text{ in }Z_{n-1}(U) & \text{by assumption}\\
+\Rightarrow a\in\mc{O}(U)^* &\text{since $U\subseteq X$ is normal}\\
+\Rightarrow s=as_0\text{ is a trivializing section over $U$} &\\
+\end{array}
+\]
+by the \textbf{sheaf property} $s\in\mc{L}(X)$; finally, since being trivializing (\textbf{never vanishing}) can be checked locally, we conclude that $s\in\mc{L}(X)$ is a global trivializing section: the map $\xymatrix{\mc{O}\ar[r]^{\cdot s} &\mc{L}\\}$ is an isom. sending $1\rightarrow s$.
+\end{proof}
+
+\begin{rmk}
+the same proof shows that if $\pa{\mc{L},s}$ is an \textbf{effective} cadiv. then $s\in\mc{L}(X)$ is a \textbf{global section} since for normal schemes we have $\dv{f}\ge 0\Longleftrightarrow f\in\mc{O}(X)\subseteq k(X)$ for a rational function $f\in k(X)$.
+\end{rmk}
+
+\subsection{Cartier divisor associated to a closed subvariety}
+\nline
+$X$ \emph{locally factorial} scheme, $V\subseteq X$ cl. s.scheme of $\cod{X}{V}=1$, $V=\ol{\ga{p}}$ generic pt. 
+\nline
+\textbf{Construction}: let $\pa{\mc{L},s}$ a cadiv. with a global section $s\in\mc{L}(X)$ with $\dv{s}\ge 0$, consider the injective map $\xymatrix{\mc{O}\ar[r]^{\cdot s} &\mc{L}\\}$, tensoring with the dual $\mc{L}^*$ we get the injective map $\xymatrix{\mc{L}^*\ar[r]^{\cdot s^*} &\mc{O}\\}$ whose image is an invertible sheaf of ideals on $X$.  
+
+\nline
+\textbf{Problem}: let $\mc{I}_V$ the coherent sheaf of ideals associated to $V$, when is $\mc{I}_V$ \emph{invertible}? Suppose that $\mc{I}_V$ is invertible then:
+\begin{itemize}
+\item{$\mc{I}_{V,q}=\mc{O}_{X,q}$ for every $q\in X\setminus V$.}
+\item{$1\in\mc{I}_{V,\xi}$, where $\xi\in X\setminus V$ is the generic pt. of $X$, $1\in\mc{I}_V\pa{X\setminus V}$.}
+\item{if $W=\ol{\ga{q}}$ is a $1-$codim. cl. s.scheme, $W\neq V$ then $\mc{I}_V$ is trivialized by $1\in\mc{I}_{V,q}$ around $q$, in particular $\ord{W}{1}=0$.}
+\item{$\ord{V}{1}=-1$: choose a local trivialization given by $\mc{I}_{V,p}=s_0\mc{O}_{X,p}$ with $s_0\in\mc{I}_{V,p}\subseteq\mc{O}_{X,p}\subseteq\mc{O}_{X,\xi}=k(X)$ a non-vanishing (or simply non-zero) section, we have $1=\frac{1}{s_0}s_0$ so we get
+\[
+\ord{V}{1}=-l_{\mc{O}_{X,p}}\pa{\frac{\mc{O}_{X,p}}{s_0\mc{O}_{X,p}}=\mc{O}_{V,p}}=-1
+\]
+since $\mc{O}_{V,p}$ is a field (the field of rational function on $V$).}
+\end{itemize} 
+
+\begin{rmk}
+the same considerations applies to $1-$codim. cl. s.schemes $D\subseteq X$ which have associated sheaf of ideals $\mc{I}_D$ which is invertible, explicitly $\dv{\mc{I}_D,1}=-D$.
+\end{rmk}
+
+\begin{teo}
+If $X$ is locally factorial then the maps $\text{CaDiv}(X)\rightarrow Z_{n-1}(X)$ and $\text{Pic}(X)\rightarrow A_{n-1}(X)$ are surjective.
+\end{teo}
+
+
+%\begin{teo}
+%the following holds
+%\begin{enumerate}
+%\item{$X$ normal $\Rightarrow$ the maps $\text{CaDiv}(X)\rightarrow Z_{n-1}(X)$ and $\text{Pic}(X)\rightarrow A_{n-1}(X)$ are injective.}
+%\item{$X$ locally factorial $\Rightarrow$ the map $\text{CaDiv}(X)\rightarrow Z_{n-1}(X)$ and $\text{Pic}(X)\rightarrow A_{n-1}(X)$ are surjective.}
+%\end{enumerate}
+%\end{teo}
+
+\begin{proof}(theorem)
+\begin{itemize}
+\item{let $[V]\in Z_{n-1}(X)$ a generator of cycles, recall that if $\mc{I}_V$ is invertible then $\dv{\mc{I}_V^*,1^*}=[V]$.}
+\item{$\mc{I}_V$ is \textbf{invertible}: fix an affine open subset $U\subseteq X$ with $U=\spc A$, $V\cap U=\spc{\frac{A}{I}}$, $I\in\spc A$ prime ideal of height $\text{ht}(I)=1$, for every point $p\in\spc{\frac{A}{I}}$ we have $\text{ht}_{A_p}\pa{I_p}=\text{ht}_A(I)=1$, since $A_p$ is a \textbf{UFD} ($A$ locally factorial) then $I_p$ is \textbf{principal} $I_p=fA_p$ generated by an element $f\in A_p$ which is not a zero-divisor ($A_p$ domain).}
+\item{since for every $p\in X$ $\mc{I}_{V,p}=f\mc{O}_{X,p}$ for some $f\in\mc{O}_{X,p}$ which is not a zero-div. we conclude that $\mc{I}_V$ is invertible.}
+\end{itemize}
+\end{proof}
+
+\subsection{pseudo-divisors}
+\nline
+$X$ scheme
+
+\begin{dfn}
+a \emph{pseudo-divisor} on $X$ is a triple $D=\pa{\mc{L},Z,s}$ where $\mc{L}$ is an invertible sheaf (which we denote by $\mc{O}(D):=\mc{L}$), $Z\subseteq X$ is a closed subset ($|D|:=Z$ is the \emph{support} of the pd.), $s\in\mc{L}\pa{X\setminus Z}$ is a section which never vanishes on $X\setminus Z$ (we denote the section of $D$ by $s_D$).
+\end{dfn}
+
+\begin{rmk}
+easy properties
+\begin{itemize}
+\item{\textbf{functoriality}: $f:Y\rightarrow X$ morph., there is a \textbf{pull-back} for pseudo-divisors
+\[
+f^*\pa{\mc{L},Z,s}=\pa{f^*\mc{L},f^{-1}Z,f^*s} 
+\]
+}
+\item{\textbf{sum operation}: given $D_1=\pa{\mc{L}_1,Z_1,s_1}$, $D_2=\pa{\mc{L}_2,Z_2,s_2}$ we define
+\[
+ D_1+D_2:=\pa{\mc{L}_1\otimes\mc{L}_2,Z_1\cup Z_2,s_1\otimes s_2}
+\]
+well-def., associativity and commutativity are clear; if we fix the closed subset $Z\subseteq X$ we have a group structure on the class of pseudo-divisors supported with identity $\pa{\mc{O},Z,1}$ and inverse $-\pa{\mc{L},Z,s}:=\pa{\mc{L}^*,Z,s^*}$; in particular for $Z=X$ we get the \textbf{Picard group}.}
+\item{\textbf{case $X$ variety}: we say that $\pa{\mc{L},s}\in\text{CaDiv}(X)$ \emph{represents} $D$ pseudo-div. if $|\dv{s}|\subseteq |D|$ and there is an isom. $\mc{L}\simeq\mc{O}(D)$ which carries $s$ to $s_D$. Every pseudo-divisor $D=\pa{\mc{L},Z,s}$ is represented by a unique (up to linear equivalence) \textbf{Cartier divisor} and a unique (up to rational equivalence) \textbf{Weyl divisor}:\\
+Existence:
+\begin{enumerate}
+ \item{$Z\subsetneq X$: $s\in\mc{L}(X\setminus Z)\subseteq\mc{L}_\xi$ where $\xi\in X$ is the generic pt. $\pa{\mc{L},s}\in\text{CaDiv}(X)$, by definition $|\dv{s}|\subseteq Z$ ($s$ is a regular never vanishing section of $\mc{L}$ over $X\setminus Z$).}
+ \item{$Z=X$: in this case simply choose some nonzero rational section $s\in\mc{L}_\xi$.}
+\end{enumerate}
+Uniqueness and associated Weyl divisor:
+\begin{enumerate}
+ \item{$Z\subsetneq X$: if $\pa{\mc{L},s},\pa{\mc{L},s'}$ represent the same pseudo-div. then there is an isom. $\mc{L}\simeq\mc{L}'$ which brings $s$ to $s'$. The associated Weyl divisor is 
+ \[
+  [D]:=\dv{s}\in Z_{n-1}(X)
+ \]
+ }
+ \item{$Z=X$: in this case if $\pa{\mc{L},s},\pa{\mc{L},s'}$ represent the same pseudo-div. then $s=as'$ differ by some rational function $a\in k(X)\Rightarrow\qa{\dv{s}}=\qa{\dv{s'}}\in A_{n-1}(X)$, so we get only a class of Weyl div. 
+ \[
+  [D]:=[\dv{s}]\in A_{n-1}(X)
+ \]
+ }
+\end{enumerate}
+}
+\end{itemize}
+\end{rmk}
+
+\section{intersecting a pseudo-divisor with a cycle}
+$X$ scheme, $D$ pseudo-div. on $X$, $[V]\in Z_{n-1}(X)$ subvariety
+\[
+D\cdot[V]:=[D|_V]=[\dv{s_V}|]\in A_{n-1}(V\cap |D|) 
+\]
+\end{document}
